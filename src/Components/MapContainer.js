@@ -1,6 +1,5 @@
+/*global kakao*/ 
 import React, { useEffect, useRef, useState } from "react";
-
-const {kakao} = window;
 
 const MapContainer = () => {
     const [map, setMap] = useState(null);
@@ -14,7 +13,7 @@ const MapContainer = () => {
             kakao.maps.load(() => {  
                 let container = document.getElementById('myMap');
                 let options = {
-                    center: new kakao.maps.LatLng(33.450701,126.570667),
+                    center: new kakao.maps.LatLng(37.33681269428202,127.26645947242548),
                     level:3
                 };
                 const createdMap = new kakao.maps.Map(container,options);
@@ -24,7 +23,7 @@ const MapContainer = () => {
     },[]);
     return (
         <>
-        <div id='myMap' style={{width:'500px', height:'500px'}}></div>
+        <div id='myMap' style={{width:'1000px', height:'1000px', justifyContent:"center", alignItems:"center"}}></div>
         </>
     );
 }
