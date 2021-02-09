@@ -1,8 +1,10 @@
 /*global kakao*/ 
 import React, { useEffect, useRef, useState } from "react";
+import {markerData} from "../Data/markerData"
 
 const MapContainer = () => {
-    const [map, setMap] = useState(null);
+    const [mapped, setMapped] = useState(null);
+    const [marker, setMarker] = useState(null);
     useEffect(() => {
         const apiKey= process.env.REACT_APP_KAKAO_API_KEY;
         const script = document.createElement('script');
@@ -17,7 +19,29 @@ const MapContainer = () => {
                     level:3
                 };
                 const createdMap = new kakao.maps.Map(container,options);
-                setMap(createdMap);
+                setMapped(createdMap);
+                
+                markerData.forEach((el)=>{
+                    new kakao.maps.Marker({
+                        map:createdMap,
+                        position: new kakao.maps.LatLng(el.lat,el.lng),
+                        title: el.title
+                    });
+                });
+                // let createdMarker = new kakao.maps.Marker({
+                //     position: createdMap.getCenter()
+                // });
+                // setMarker(createdMarker);
+                // createdMarker.setMap(createdMap);
+
+                // kakao.maps.event.addListener(createdMap,'click',function(mouseEvent){
+                //     let latlng = mouseEvent.latLng;
+                //     createdMarker.setPosition(latlng);
+
+                //     console.log(latlng.getLat());
+                //     console.log(latlng.getLng())
+                // });
+
             })
         }
     },[]);
