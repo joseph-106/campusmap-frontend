@@ -1,6 +1,8 @@
 /*global kakao*/ 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {markerData} from "../Data/markerData"
+import Engine from "../Routes/Engine";
 
 const MapContainer = () => {
     const [mapped, setMapped] = useState(null);
@@ -22,12 +24,28 @@ const MapContainer = () => {
                 setMapped(createdMap);
                 
                 markerData.forEach((el)=>{
-                    new kakao.maps.Marker({
+                    const content= `<a href="/${el.title}">${el.title}</a>`
+                    const createdMarker = new kakao.maps.Marker({
                         map:createdMap,
                         position: new kakao.maps.LatLng(el.lat,el.lng),
-                        title: el.title
+                        title: el.title,
+                        clickable: true
+                    });
+
+                    const createdInfo = new kakao.maps.InfoWindow({
+                        content:content,
+                        removable: true
+                    });
+
+                    kakao.maps.event.addListener(createdMarker,'click',function(){
+                        //let latlng = mouseEvent.latLng;
+                        //createdMarker.setPosition(latlng);
+                        //console.log(createdMarker.getPosition().getLng());
+                        createdInfo.open(createdMap,createdMarker);
                     });
                 });
+                
+
                 // let createdMarker = new kakao.maps.Marker({
                 //     position: createdMap.getCenter()
                 // });
