@@ -1,11 +1,19 @@
 import React from 'react';
+import styled from "styled-components";
+import MenuList from '../Components/Menu';
+
+const Card = styled.div`
+    ${props => props.theme.whiteBox}
+    display: flex;
+    padding: 20px;
+`;
 
 const Engine = () => {
   return (
-    <div>
-      <h1>열정적으로 살고 싶다.</h1>
-      <p>리액트 라우터 한 방에 끝내버리자.</p>
-    </div>
+    <Card>
+      <MenuList/>
+      <p style={{display:"inline-block"}}>리액트 라우터 한 방에 끝내버리자.</p>
+    </Card>
   );
 };
 
