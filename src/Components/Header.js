@@ -4,6 +4,8 @@ import { Link, withRouter } from "react-router-dom";
 import Input from "./Input";
 import useInput from "./useInput";
 import { Compass, HeartEmpty, User, Logo } from "./Icons";
+import { useHistory } from "react-router-dom";
+import { authService } from "fbase";
 
 const Header = styled.header`
   width: 100%;
@@ -67,6 +69,12 @@ export default withRouter(({ history }) => {
     e.preventDefault();
     history.push(`/search?term=${search.value}`);
   };
+  const historys = useHistory();
+  const onLogOutClick = () => {
+      authService.signOut();
+      historys.push("/");
+  };
+
   return (
     <Header>
       <HeaderWrapper>
@@ -91,7 +99,7 @@ export default withRouter(({ history }) => {
           <HeaderLink to="/notifications">
             <HeartEmpty />
           </HeaderLink>
-          <HeaderLink to="/#">
+          <HeaderLink onClick={onLogOutClick}>
               <User />
             </HeaderLink>
         </HeaderColumn>

@@ -1,12 +1,14 @@
-import React, {Component} from "react";
+import React, {Component, useEffect, useState} from "react";
 import styled,{ThemeProvider} from "styled-components";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 import GlobalStyles from "../Styles/GlobalStyles";
 import Theme from "../Styles/Theme";
 import MapContainer from "./MapContainer";
 import Engine from "../Routes/Engine"
 import Footer from "./Footer";
 import Header from "./Header";
+import {authService} from "../fbase";
+import AppRouter from "./AppRouter";
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -15,6 +17,21 @@ const Wrapper = styled.div`
 `;
 
 function App() {
+  const [init, setInit] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(()=>{
+    authService.onAuthStateChanged((user) => {
+      if(user){
+        setIsLoggedIn(true);
+      }
+      else{
+        setIsLoggedIn(false);
+      }
+      setInit(true);
+    })
+  },[])
+ 
   return (
     <ThemeProvider theme={Theme}>
       <>
@@ -23,13 +40,11 @@ function App() {
           <>
           <Header/>
           <Wrapper>
-            <Route path="/" component={MapContainer} exact/>
-            <Route path="/공학관" component={Engine} />
+            {init ? <AppRouter isLoggedIn={isLoggedIn}/> : "Initializing..."}
             <Footer/>
           </Wrapper>
           </>
         </Router>
-
       </>
     </ThemeProvider>
   );
