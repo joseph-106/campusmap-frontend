@@ -10,4 +10,3 @@
 - [x] logout
 - [ ] 이메일 인증
 - [ ] data 넣기
-✔ HashRouter 부분 Check (URL 이동 이상함)
