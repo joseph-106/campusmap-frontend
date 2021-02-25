@@ -10,3 +10,9 @@
 - [x] logout
 - [ ] 이메일 인증
 - [ ] data 넣기
+
+# 이메일 인증의 한계 
+- DataBase 연결해야하는가
+- User 관리(ID,학번,이름,Verified,비번)
+- 건물(ID,Name,FK(층))
+- 층(ID,Floor,이미지(건물 내부 구상도 + 정보))
