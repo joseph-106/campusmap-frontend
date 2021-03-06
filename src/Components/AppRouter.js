@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Engine from "Routes/Engine";
 import Auth from "../Routes/Auth"
-import MapContainer from "./MapContainer";
+import MapContainer from "../Screens/MapContainer";
 
 const AppRouter = ({isLoggedIn}) => {
  

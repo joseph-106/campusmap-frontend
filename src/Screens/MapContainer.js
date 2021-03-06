@@ -1,8 +1,6 @@
 /*global kakao*/ 
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import {markerData} from "../Data/markerData"
-import Engine from "../Routes/Engine";
 
 const MapContainer = () => {
     const [mapped, setMapped] = useState(null);
