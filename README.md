@@ -13,6 +13,7 @@
 
 # Step
 - [x] Router
-- [ ] Authentication
-- [ ] Architecture
+- [x] Authentication
+- [x] Architecture
 - [ ] Styles
+- [ ] Login
