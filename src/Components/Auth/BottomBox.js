@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { BaseBox } from "Components/shared";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -19,6 +20,12 @@ const BottomBox = ({cta,link,linkText}) => {
             <Link to={link}>{linkText}</Link>
         </Container>
     );
+}
+
+BottomBox.propTypes = {
+    cta: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+    linkText: PropTypes.string.isRequired
 }
 
 export default BottomBox;
