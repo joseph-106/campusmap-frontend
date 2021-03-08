@@ -3,8 +3,9 @@ const BOX_BORDER = "1px solid #262626";
 const BORDER_RADIUS = "4px";
 
 export const lightTheme = {
-  fontColor: "#2C2C2C",
-  bgColor: "lightgray"
+  accent: "#0095f6",
+  borderColor: "rgb(219,219,219)",
+
 };
 
 export const darkTheme = {

@@ -13,6 +13,7 @@ export default createGlobalStyle`
     body {
         background-color: #FAFAFA;
         font-size:14px;
+        color: rgb(38,38,38); 
     }
     a{
         text-decoration:none;
