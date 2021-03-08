@@ -6,7 +6,7 @@ import { darkModeVar, isLoggedInVar } from "../apollo";
 const Container = styled.div`
     display:flex;
     height: 100vh;
-    jusify-content:center;
+    justify-content:center;
     align-items:center;
     flex-direction:column;
 `;
@@ -19,7 +19,7 @@ const whiteBox = styled.div`
 
 const TopBox = styled(whiteBox)`
     display:flex;
-    jusify-content:center;
+    justify-content:center;
     align-items:center;
     flex-direction: column;
     padding: 35px 40px 25px 40px;
@@ -27,7 +27,7 @@ const TopBox = styled(whiteBox)`
         margin-top:35px;
         width: 100%;
         display:flex;
-        jusify-items:center;
+        justify-items:center;
         flex-direction: column;
         align-items:center;
         input{
