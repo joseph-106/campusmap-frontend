@@ -9,6 +9,7 @@ import FormBox from "Components/Auth/FormBox";
 import BottomBox from "Components/Auth/BottomBox";
 import styled from "styled-components";
 import { FatLink } from "Components/shared";
+import { Helmet } from "react-helmet-async";
 
 const HeadContainer = styled.div`
     display:flex;
@@ -23,6 +24,9 @@ const Subtitle = styled(FatLink)`
 const Signup = () => {
     return (
         <AuthLayout>
+            <Helmet>
+                <title>Sign up | CampusMap</title>
+            </Helmet>
             <FormBox>
                 <Logo/>
                 <HeadContainer>
