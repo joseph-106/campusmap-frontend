@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { faMapMarkedAlt } from "@fortawesome/free-solid-svg-icons";
 import { Link, withRouter } from "react-router-dom";
-import Input from "./Input";
-import useInput from "./useInput";
+import Input from "../Components/Auth/Input";
+
 import { Compass, HeartEmpty, User, Logo } from "./Icons";
 import { useHistory } from "react-router-dom";
-import { authService } from "fbase";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { logUserOut } from "apollo";
 
 const Header = styled.header`
   width: 100%;
@@ -64,16 +67,10 @@ const HeaderLink = styled(Link)`
 `;
 
 export default withRouter(({ history }) => {
-  const search = useInput("");
   const onSearchSubmit = e => {
     e.preventDefault();
-    history.push(`/search?term=${search.value}`);
   };
   const historys = useHistory();
-  const onLogOutClick = () => {
-      authService.signOut();
-      historys.push("/");
-  };
 
   return (
     <Header>
@@ -86,8 +83,6 @@ export default withRouter(({ history }) => {
         <HeaderColumn>
           <form onSubmit={onSearchSubmit}>
             <SearchInput
-              value={search.value}
-              onChange={search.onChange}
               placeholder="Search"
             />
           </form>
@@ -99,8 +94,8 @@ export default withRouter(({ history }) => {
           <HeaderLink to="/notifications">
             <HeartEmpty />
           </HeaderLink>
-          <HeaderLink onClick={onLogOutClick}>
-              <User />
+          <HeaderLink onClick={logUserOut}>
+              <FontAwesomeIcon icon={faMapMarkedAlt} />
             </HeaderLink>
         </HeaderColumn>
       </HeaderWrapper>
