@@ -12,7 +12,7 @@ import { FatLink } from "Components/shared";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { useMutation,gql } from "@apollo/client";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 
 const HeadContainer = styled.div`
@@ -53,12 +53,13 @@ const Signup = () => {
     const history = useHistory();
     const onCompleted = (data) =>{
         const {createAccount:{ok,error}} = data;
+        const {studentId,password} = getValues();
         if(!ok){
             return setError("result",{
                 message:error,
             });
         }
-        history.push(routes.home);
+        history.push(routes.home,{message:"계정 생성 완료!",studentId,password});
     };
     const [createAccount,{loading}] = useMutation(CREATE_ACCOUNT_MUTATION,{
         onCompleted

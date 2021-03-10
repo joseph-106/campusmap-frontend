@@ -10,6 +10,8 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import FormError from "Components/Auth/FormError";
 import { useMutation,gql } from "@apollo/client";
+import styled from "styled-components";
+import { useLocation } from "react-router";
 
 const LOGIN_MUTATION = gql`
     mutation login($studentId:String!,$password:String!){
@@ -21,9 +23,19 @@ const LOGIN_MUTATION = gql`
     }
 `;
 
+const Notification = styled.div`
+    color:#2ecc71;
+
+`;
+
 const Login = () => {
+    const location = useLocation();
     const {register, handleSubmit, errors, formState,getValues,setError,clearErrors} = useForm({
-        mode: "onChange"
+        mode: "onChange",
+        defaultValues:{
+            studentId:location?.state?.studentId || "",
+            password:location?.state?.password || ""
+        }
     });
     const onCompleted = (data) =>{
         const {login:{ok,token,error}} = data;
@@ -64,6 +76,7 @@ const Login = () => {
                 <div>
                     <Logo/>
                 </div>
+                <Notification>{location?.state?.message}</Notification>
                 <form onSubmit={handleSubmit(onSubmitValid)}>
                     <Input ref={register({
                         required: "학번을 입력해주세요.",
