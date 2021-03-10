@@ -63,7 +63,7 @@ const MapContainer = () => {
     },[]);
     return (
         <>
-        <div id='myMap' style={{width:'1000px', height:'1000px', justifyContent:"center", alignItems:"center"}}></div>
+        <div id='myMap' style={{width:'930px', height:'930px', display:"flex", justifyContent:"center", alignItems:"center"}}></div>
         </>
     );
 }

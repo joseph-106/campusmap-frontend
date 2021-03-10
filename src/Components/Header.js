@@ -1,49 +1,45 @@
 import React from "react";
 import styled from "styled-components";
-import { faMapMarkedAlt } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkedAlt, faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link, withRouter } from "react-router-dom";
 import Input from "../Components/Auth/Input";
-
-import { Compass, HeartEmpty, User, Logo } from "./Icons";
-import { useHistory } from "react-router-dom";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { logUserOut } from "apollo";
+import { isLoggedInVar, logUserOut } from "apollo";
+import routes from "routes";
+import { useReactiveVar } from "@apollo/client";
 
-const Header = styled.header`
+const SHeader = styled.header`
   width: 100%;
-  border: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: white;
-  border-bottom: ${props => props.theme.boxBorder};
-  border-radius: 0px;
+  background-color: ${props => props.theme.bgColor};
+  border-bottom: 1px solid ${props => props.theme.borderColor};
+  padding: 18px 0px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 25px 0px;
-  z-index: 2;
 `;
 
-const HeaderWrapper = styled.div`
+const Wrapper = styled.div`
   width: 100%;
-  max-width: ${props => props.theme.maxWidth};
+  max-width: 930px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
 `;
 
-const HeaderColumn = styled.div`
-  width: 33%;
-  text-align: center;
-  &:first-child {
-    margin-right: auto;
-    text-align: left;
-  }
-  &:last-child {
-    margin-left: auto;
-    text-align: right;
-  }
+const Column = styled.div`
+  
+`;
+
+const Icon = styled.span`
+  margin-left:15px;
+`;
+
+const Button = styled.span`
+  background-color: ${props => props.theme.bgColor};
+  border-radius:4px;
+  padding: 4px 15px;
+  color:white;
+  font-weight:600;
 `;
 
 const SearchInput = styled(Input)`
@@ -60,45 +56,34 @@ const SearchInput = styled(Input)`
   }
 `;
 
-const HeaderLink = styled(Link)`
-  &:not(:last-child) {
-    margin-right: 30px;
-  }
-`;
 
-export default withRouter(({ history }) => {
-  const onSearchSubmit = e => {
-    e.preventDefault();
-  };
-  const historys = useHistory();
-
+const Header = () => {
+  const isLoggedIn = useReactiveVar(isLoggedInVar);
   return (
-    <Header>
-      <HeaderWrapper>
-        <HeaderColumn>
-          <Link to="/">
-            <Logo />
-          </Link>
-        </HeaderColumn>
-        <HeaderColumn>
-          <form onSubmit={onSearchSubmit}>
-            <SearchInput
-              placeholder="Search"
-            />
-          </form>
-        </HeaderColumn>
-        <HeaderColumn>
-          <HeaderLink to="/explore">
-            <Compass />
-          </HeaderLink>
-          <HeaderLink to="/notifications">
-            <HeartEmpty />
-          </HeaderLink>
-          <HeaderLink onClick={logUserOut}>
-              <FontAwesomeIcon icon={faMapMarkedAlt} />
-            </HeaderLink>
-        </HeaderColumn>
-      </HeaderWrapper>
-    </Header>
+    <SHeader>
+      <Wrapper>
+        <Column>
+          <FontAwesomeIcon icon={faMapMarkedAlt} size="2x" color="black"/>
+        </Column>
+        <Column>
+          {isLoggedIn ? (
+            <>
+              <Icon>
+                <FontAwesomeIcon icon={faUser} size="lg" color="black"/>
+              </Icon>
+              <Icon onClick={logUserOut}>
+                  <FontAwesomeIcon icon={faSignOutAlt} size="lg" color="black"/>
+              </Icon> 
+            </>
+          ) : (
+            <Link href={routes.home}>
+              <Button>Login</Button>
+            </Link>
+          )}
+        </Column>
+      </Wrapper>
+    </SHeader>
   );
-});
+}
+
+export default Header;
