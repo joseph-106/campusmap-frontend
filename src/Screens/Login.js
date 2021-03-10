@@ -6,12 +6,10 @@ import Button from "Components/Auth/Button";
 import Input from "Components/Auth/Input";
 import FormBox from "Components/Auth/FormBox";
 import BottomBox from "Components/Auth/BottomBox";
-import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import FormError from "Components/Auth/FormError";
-import gql from "graphql-tag";
-import { useMutation } from "@apollo/client";
+import { useMutation,gql } from "@apollo/client";
 
 const LOGIN_MUTATION = gql`
     mutation login($studentId:String!,$password:String!){
