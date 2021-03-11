@@ -7,6 +7,8 @@ export const lightTheme = {
   boxColor: "#FAFAFA",
   fontColor: "rgb(38,38,38)",
   borderColor: "rgb(219,219,219)",
+  darkGreyColor: "#A9A9A9",
+  darkBlueColor: "#00008b"
 };
 
 export const darkTheme = {
@@ -14,6 +16,8 @@ export const darkTheme = {
   fontColor: "white",
   boxColor: "#2C2C2C",
   bgColor: "black",
+  darkGreyColor: "#A9A9A9",
+  darkBlueColor: "#00008b"
 };
 
 

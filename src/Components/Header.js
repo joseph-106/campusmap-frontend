@@ -43,40 +43,38 @@ const Button = styled.span`
   font-weight:600;
 `;
 
-const SearchInput = styled(Input)`
-  background-color: ${props => props.theme.bgColor};
-  padding: 5px;
-  font-size: 14px;
-  border-radius: 3px;
-  height: auto;
-  text-align: center;
-  width: 70%;
-  &::placeholder {
-    opacity: 0.8;
-    font-weight: 200;
-  }
+const IconsContainer = styled.div`
+  display:flex;
+`;
+
+const Font = styled.span`
+  font-size:10px;
+  font-weight: 1000;
+  padding: 2px 0px;
+  display:flex;
 `;
 
 
 const Header = () => {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
-  const loggedInUser = useUser();
+  const {data} = useUser();
   return (
     <SHeader>
       <Wrapper>
         <Column>
-          <FontAwesomeIcon icon={faMapMarkedAlt} size="2x" color="black"/>
+          <FontAwesomeIcon icon={faMapMarkedAlt} size="3x" color="black"/>
         </Column>
         <Column>
           {isLoggedIn ? (
-            <>
-              <Icon>
-                <FontAwesomeIcon icon={faUser} size="lg" color="black"/>
-              </Icon>
-              <Icon onClick={logUserOut}>
-                  <FontAwesomeIcon icon={faSignOutAlt} size="lg" color="black"/>
-              </Icon> 
-            </>
+            <IconsContainer>
+               <Icon>
+                  <FontAwesomeIcon icon={faUser} style={{justifyContent:"center", alignItems:"center"}} size="2x" color="black"/>
+                  <Font>{data?.me?.name}</Font>
+                </Icon>
+                <Icon onClick={logUserOut}>
+                    <FontAwesomeIcon icon={faSignOutAlt} size="2x" color="black"/>
+                </Icon> 
+            </IconsContainer>
           ) : (
             <Link href={routes.home}>
               <Button>Login</Button>

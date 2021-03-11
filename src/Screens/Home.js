@@ -2,6 +2,7 @@ import Header from "Components/Header";
 import MapContainer from "./MapContainer";
 import { Helmet } from "react-helmet-async";
 import styled from "styled-components";
+import Footer from "Components/Footer";
 
 const Content = styled.main`
     margin-top: 45px;
@@ -19,7 +20,9 @@ const Home = () => {
             <Header/>
             <Content>
                 <MapContainer/>
+                <Footer/>
             </Content>
+            
         </>
     )
 }

@@ -29,6 +29,11 @@ const Copyright = styled.span`
   color: ${props => props.theme.darkGreyColor};
 `;
 
+const Content = styled.span`
+  color: ${props => props.theme.darkGreyColor};
+`;
+
+
 export default () => (
   <Footer>
     <List>
@@ -44,28 +49,17 @@ export default () => (
       <ListItem>
         <Link href="#">api</Link>
       </ListItem>
+    </List>
+    <List>
       <ListItem>
-        <Link href="#">jobs</Link>
+        <Content>Tel) 010-xxxx-xxxx</Content>
+      </ListItem>
+      <ListItem> 
+        <Content style={{textTransform:"none"}}>E) pxxxxxxxxx@gmail.com</Content>
       </ListItem>
       <ListItem>
-        <Link href="#">privacy</Link>
-      </ListItem>
-      <ListItem>
-        <Link href="#">terms</Link>
-      </ListItem>
-      <ListItem>
-        <Link href="#">directory</Link>
-      </ListItem>
-      <ListItem>
-        <Link href="#">profiles</Link>
-      </ListItem>
-      <ListItem>
-        <Link href="#">hashtags</Link>
-      </ListItem>
-      <ListItem>
-        <Link href="#">language</Link>
+        <Copyright>CampusMap {new Date().getFullYear()} &copy;</Copyright>
       </ListItem>
     </List>
-    <Copyright>CampusMap {new Date().getFullYear()} &copy;</Copyright>
   </Footer>
 );

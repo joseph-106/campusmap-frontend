@@ -5,8 +5,12 @@ import { useEffect } from "react";
 const ME_QUERY = gql`
     query me{
         me {
+            id,
             name,
-            studentId
+            studentId,
+            major,
+            idCard,
+            isManaged
         }
     }
 `;
@@ -21,7 +25,7 @@ const useUser = () => {
             logUserOut();
         }
     },[data]);
-    return ;
+    return {data} ;
 }
 
 export default useUser;
