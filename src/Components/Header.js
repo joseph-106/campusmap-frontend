@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { isLoggedInVar, logUserOut } from "apollo";
 import routes from "routes";
 import { useReactiveVar } from "@apollo/client";
+import useUser from "./Hooks/useUser";
 
 const SHeader = styled.header`
   width: 100%;
@@ -59,6 +60,7 @@ const SearchInput = styled(Input)`
 
 const Header = () => {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
+  const loggedInUser = useUser();
   return (
     <SHeader>
       <Wrapper>
