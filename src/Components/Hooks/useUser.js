@@ -8,8 +8,8 @@ const ME_QUERY = gql`
             id,
             name,
             studentId,
-            major,
             idCard,
+            major,
             isManaged
         }
     }
