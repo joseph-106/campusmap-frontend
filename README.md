@@ -6,7 +6,6 @@
 - [x] seeUsers API
 - [x] Main에 빌딩 데이터 모아오기
 - [x] 건물당 URL 연결
-- [ ] Main Container 만들기
 - [ ] '/건물'에 층 데이터 불러오기
 - [ ] 내부 설계도 데이터 구하기
 - [ ] user page

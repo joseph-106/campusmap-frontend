@@ -12,8 +12,7 @@ import routes from "routes";
 import { HelmetProvider } from "react-helmet-async";
 import Home from "Screens/Home";
 import Profile from "Screens/Profile";
-import Detail from "Screens/Detail";
-import Engine from "Screens/Building";
+import Building from "Screens/Building";
 
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
@@ -41,7 +40,7 @@ function App() {
               <Profile/>
             </Route>
             <Route path={`/:name`}>
-              <Engine/>
+              <Building/>
             </Route>
             <Redirect to="/" />
           </Switch>

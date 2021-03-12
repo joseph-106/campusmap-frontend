@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Detail = () => {
+const Menu = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [floor,setFloor] = useState(0);
@@ -44,4 +44,4 @@ const Detail = () => {
   );
 }
 
-export default Detail;
+export default Menu;

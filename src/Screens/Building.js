@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useParams } from 'react-router-dom';
 import styled from "styled-components";
-import Detail from './Detail';
+import Detail from '../Components/Menu';
 
 const Card = styled.div`
     ${props => props.theme.whiteBox}

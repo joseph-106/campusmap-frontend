@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import {markerData} from "../Data/markerData"
 import { gql, useQuery, useReactiveVar } from "@apollo/client";
+import styled from "styled-components";
 
 const SEE_BUILDINGS_QUERY = gql`
     query seeBuildings{
@@ -13,6 +14,7 @@ const SEE_BUILDINGS_QUERY = gql`
         }
     } 
 `;
+
 
 const MapContainer = () => {
     const [mapped, setMapped] = useState(null);
@@ -73,9 +75,7 @@ const MapContainer = () => {
         }
     },[data]);
     return (
-        <>
-        <div id='myMap' style={{width:'930px', height:'930px', display:"flex", justifyContent:"center", alignItems:"center"}}></div>
-        </>
+         <div id='myMap' style={{ width:'83vw', height:'50vh', display:"flex", justifyContent:"center", alignItems:"center"}}></div>    
     );
 }
 
