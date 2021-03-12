@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import { useParams } from 'react-router-dom';
 import styled from "styled-components";
-import MenuList from '../Components/Menu';
+import Detail from './Detail';
 
 const Card = styled.div`
     ${props => props.theme.whiteBox}
@@ -8,13 +9,15 @@ const Card = styled.div`
     padding: 20px;
 `;
 
-const Engine = () => {
+const Building = () => {
+  const params = useParams();
+  console.log(params);
   return (
     <Card>
-      <MenuList/>
+      <Detail/>
       <p style={{display:"inline-block"}}>리액트 라우터 한 방에 끝내버리자.</p>
     </Card>
   );
 };
 
-export default Engine;
+export default Building;

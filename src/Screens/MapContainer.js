@@ -1,10 +1,24 @@
 /*global kakao*/ 
 import React, { useEffect, useState } from "react";
 import {markerData} from "../Data/markerData"
+import { gql, useQuery, useReactiveVar } from "@apollo/client";
+
+const SEE_BUILDINGS_QUERY = gql`
+    query seeBuildings{
+        seeBuildings{
+            id,
+            name,
+            lat,
+            lng
+        }
+    } 
+`;
 
 const MapContainer = () => {
     const [mapped, setMapped] = useState(null);
     const [marker, setMarker] = useState(null);
+    const {data} = useQuery(SEE_BUILDINGS_QUERY);
+    console.log(data);
     useEffect(() => {
         const apiKey= process.env.REACT_APP_KAKAO_API_KEY;
         const script = document.createElement('script');
@@ -21,12 +35,12 @@ const MapContainer = () => {
                 const createdMap = new kakao.maps.Map(container,options);
                 setMapped(createdMap);
                 
-                markerData.forEach((el)=>{
-                    const content= `<a href="/${el.title}">${el.title}</a>`
+                data?.seeBuildings?.forEach((el)=>{
+                    const content= `<a href="/${el.name}">${el.name}</a>`
                     const createdMarker = new kakao.maps.Marker({
                         map:createdMap,
                         position: new kakao.maps.LatLng(el.lat,el.lng),
-                        title: el.title,
+                        title: el.name,
                         clickable: true
                     });
 
@@ -36,9 +50,6 @@ const MapContainer = () => {
                     });
 
                     kakao.maps.event.addListener(createdMarker,'click',function(){
-                        //let latlng = mouseEvent.latLng;
-                        //createdMarker.setPosition(latlng);
-                        //console.log(createdMarker.getPosition().getLng());
                         createdInfo.open(createdMap,createdMarker);
                     });
                 });
@@ -60,7 +71,7 @@ const MapContainer = () => {
 
             })
         }
-    },[]);
+    },[data]);
     return (
         <>
         <div id='myMap' style={{width:'930px', height:'930px', display:"flex", justifyContent:"center", alignItems:"center"}}></div>

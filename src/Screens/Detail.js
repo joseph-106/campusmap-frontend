@@ -6,7 +6,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "inline-block",
@@ -17,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Menu() {
+const Detail = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [floor,setFloor] = useState(0);
@@ -44,3 +43,5 @@ export default function Menu() {
     </div>
   );
 }
+
+export default Detail;
