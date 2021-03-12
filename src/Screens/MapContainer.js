@@ -1,6 +1,5 @@
 /*global kakao*/ 
 import React, { useEffect, useState } from "react";
-import {markerData} from "../Data/markerData"
 import { gql, useQuery, useReactiveVar } from "@apollo/client";
 import styled from "styled-components";
 

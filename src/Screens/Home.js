@@ -21,8 +21,7 @@ const Home = () => {
             <Content>
                 <MapContainer/>
                 <Footer/>
-            </Content>
-            
+            </Content>     
         </>
     )
 }

@@ -1,6 +1,9 @@
 import {createGlobalStyle} from "styled-components";
 import reset from "styled-reset";
 
+const BOX_BORDER = "1px solid #262626";
+const BORDER_RADIUS = "4px";
+
 export const lightTheme = {
   accent: "#0095f6",
   bgColor: "rgb(245,245,245)",
@@ -8,7 +11,11 @@ export const lightTheme = {
   fontColor: "rgb(38,38,38)",
   borderColor: "rgb(219,219,219)",
   darkGreyColor: "#A9A9A9",
-  darkBlueColor: "#00008b"
+  darkBlueColor: "#00008b",
+  whiteBox: ` border:${BOX_BORDER}; 
+                border-radius:${BORDER_RADIUS};
+                background-color:white;
+            `
 };
 
 export const darkTheme = {
