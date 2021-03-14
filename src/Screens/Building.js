@@ -22,6 +22,10 @@ const Content = styled.main`
     width: 100%;
 `;
 
+const ImageContainer = styled.img`
+  min-width:90%;
+`;
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "inline-block",
@@ -46,16 +50,16 @@ const READ_BUILDING_QUERY = gql`
 
 const Building = () => {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = useState(null);
   const {name} = useParams();
   const [floor,setFloor] = useState([]);
+  const [floorImage,setFloorImage] = useState("");
   const onCompleted = (data) =>{
    const {readBuilding:{floors}} = data;
    if(floors){
       setFloor(floors);
    }
   };
-  console.log(floor);
+
   const {data} = useQuery(READ_BUILDING_QUERY,{
     variables:{
       name
@@ -63,12 +67,10 @@ const Building = () => {
     onCompleted
   });
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    const ImageF = floor[event.target.value-1].Image;
+    setFloorImage(ImageF);
   };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  
   return (
     <>
     <Header/>
@@ -78,12 +80,12 @@ const Building = () => {
           <Paper className={classes.paper}>
             <MenuList>
               {
-                floor.map((f) => (<MenuItem onClick={handleClose} key={f.id}>{f.name}</MenuItem>))
+                floor.slice().sort((a,b) => a.id - b.id).map((f) => (<MenuItem onClick={handleClick} key={f.id} value={f.name}>{f.name}</MenuItem>))
               }
             </MenuList>
           </Paper>  
         </div>
-        <p style={{display:"inline-block"}}>리액트 라우터 한 방에 끝내버리자.</p>
+        <ImageContainer src={floorImage} />
       </Card>
     </Content>
     </>

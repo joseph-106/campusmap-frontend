@@ -19,7 +19,7 @@ const MapContainer = () => {
     const [mapped, setMapped] = useState(null);
     const [marker, setMarker] = useState(null);
     const {data} = useQuery(SEE_BUILDINGS_QUERY);
-    console.log(data);
+   
     useEffect(() => {
         const apiKey= process.env.REACT_APP_KAKAO_API_KEY;
         const script = document.createElement('script');
@@ -74,7 +74,7 @@ const MapContainer = () => {
         }
     },[data]);
     return (
-         <div id='myMap' style={{ width:'83vw', height:'50vh', display:"flex", justifyContent:"center", alignItems:"center"}}></div>    
+         <div id='myMap' style={{ width:'60vw', height:'60vh', display:"flex", justifyContent:"center", alignItems:"center"}}></div>    
     );
 }
 
