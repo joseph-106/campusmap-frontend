@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
+import Footer from 'Components/Footer';
 
 
 const Card = styled.div`
@@ -87,6 +88,7 @@ const Building = () => {
         </div>
         <ImageContainer src={floorImage} />
       </Card>
+      <Footer/>
     </Content>
     </>
   );

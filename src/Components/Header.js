@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { faMapMarkedAlt, faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons";
-import { Link, withRouter } from "react-router-dom";
+import { faMapMarkedAlt, faSignOutAlt, faUser, faUserCog } from "@fortawesome/free-solid-svg-icons";
+import { Link, useParams, withRouter } from "react-router-dom";
 import Input from "../Components/Auth/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { isLoggedInVar, logUserOut } from "apollo";
@@ -62,14 +62,26 @@ const Header = () => {
     <SHeader>
       <Wrapper>
         <Column>
-          <FontAwesomeIcon icon={faMapMarkedAlt} size="3x" color="black"/>
+          <Link to={'/'} >
+            <FontAwesomeIcon icon={faMapMarkedAlt} size="3x" color="black"/>
+          </Link>
         </Column>
         <Column>
           {isLoggedIn ? (
             <IconsContainer>
+               {data?.me?.isManaged ? (
+                 <Icon>
+                   <Link to={`/manager`} >
+                    <FontAwesomeIcon icon={faUserCog} size="2x" color="black"/>
+                    <Font>Manager</Font>
+                   </Link> 
+                 </Icon>
+               ) : null} 
                <Icon>
-                  <FontAwesomeIcon icon={faUser} style={{justifyContent:"center", alignItems:"center"}} size="2x" color="black"/>
-                  <Font>{data?.me?.name}</Font>
+                 <Link to={`/user/${data?.me?.studentId}`}>
+                    <FontAwesomeIcon icon={faUser} style={{justifyContent:"center", alignItems:"center"}} size="2x" color="black"/>
+                    <Font>{data?.me?.name}</Font>
+                  </Link>
                 </Icon>
                 <Icon onClick={logUserOut}>
                     <FontAwesomeIcon icon={faSignOutAlt} size="2x" color="black"/>

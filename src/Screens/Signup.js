@@ -76,7 +76,6 @@ const Signup = () => {
                 major,
                 password,
                 idCard:idCard[0],
-                
             }
         })
     };

@@ -9,6 +9,6 @@
 - [x] '/건물'에 층 데이터 불러오기
 - [x] 버튼 누르면 층별 이미지 나오게 하기
 - [ ] 내부 설계도 데이터 구하기
-- [ ] user page
+- [x] user page
 - [ ] Manager Page
 - [ ] Dark Mode
