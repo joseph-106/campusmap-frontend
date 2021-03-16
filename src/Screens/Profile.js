@@ -92,14 +92,14 @@ const Profile = () => {
         if(name!==""){
             editProfile({
                 variables:{
-                    name:Name,
+                    name,
                 }
             });
         }
         if(password!==""){
             editProfile({
                 variables:{
-                    password:Password,
+                    password,
                 }
             });
         }

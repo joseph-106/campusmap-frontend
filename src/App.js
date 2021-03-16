@@ -1,9 +1,6 @@
 import { ApolloProvider, useReactiveVar } from "@apollo/client";
-import React, {Component, useEffect, useState} from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Login from "Screens/Login";
-import MapContainer from "Screens/MapContainer";
-import NotFound from "Screens/NotFound";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme,GlobalStyles } from "Theme";
 import {client, darkModeVar, isLoggedInVar} from "./apollo";
