@@ -1,4 +1,9 @@
 import React,{useState} from 'react';
+import { Helmet } from "react-helmet-async";
+import {gql, useMutation, useQuery} from '@apollo/client';
+import styled from "styled-components";
+import Header from 'Components/Header';
+import Footer from "Components/Footer";
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,10 +12,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Helmet } from "react-helmet-async";
-import Header from 'Components/Header';
-import styled from "styled-components";
-import {gql, useMutation, useQuery} from '@apollo/client';
 import { Checkbox } from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -137,13 +138,16 @@ const Manager = () => {
                                                 value={user.id}
                                             />
                                         </TableCell>
-                                        <TableCell onClick={()=>alert(`${user.idCard}`)}><ImageContainer src={user.idCard}/></TableCell>
+                                        <TableCell>{user.idCard ?
+                                            <ImageContainer src={user.idCard}/> : null}
+                                        </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
                         </Table>
                     </TableContainer>
                 </Card>
+                <Footer/>
             </Content>
         </>
     );

@@ -1,13 +1,13 @@
 import React,{useEffect, useState} from 'react';
-import Header from 'Components/Header';
-import {gql, useMutation, useQuery} from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import styled from "styled-components";
+import {gql, useMutation, useQuery} from '@apollo/client';
+import Header from 'Components/Header';
+import Footer from 'Components/Footer';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
-import Footer from 'Components/Footer';
 
 
 const Card = styled.div`

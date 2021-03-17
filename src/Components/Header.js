@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { faMapMarkedAlt, faSignOutAlt, faUser, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { Link, useParams, withRouter } from "react-router-dom";
-import Input from "../Components/Auth/Input";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { isLoggedInVar, logUserOut } from "apollo";
-import routes from "routes";
 import { useReactiveVar } from "@apollo/client";
+import routes from "routes";
 import useUser from "./Hooks/useUser";
+import { faMapMarkedAlt, faSignOutAlt, faUser, faUserCog } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SHeader = styled.header`
   width: 100%;

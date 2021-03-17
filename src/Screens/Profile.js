@@ -1,13 +1,17 @@
-import React,{useEffect, useState} from 'react';
-import { useLocation, useParams } from "react-router-dom";
+import React,{useState} from 'react';
+import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Header from 'Components/Header';
 import styled from "styled-components";
-import {gql, useMutation, useQuery} from '@apollo/client';
+import {gql, useMutation, useQuery,useReactiveVar} from '@apollo/client';
 import { useForm } from "react-hook-form";
 import Input from 'Components/Auth/Input';
 import Button from 'Components/Auth/Button';
 import FormError from 'Components/Auth/FormError';
+import Switch from '@material-ui/core/Switch';
+import { darkModeVar, disableDarkMode, enableDarkMode } from "apollo";
+import Footer from "Components/Footer";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const Card = styled.div`
     ${props => props.theme.whiteBox}
@@ -24,6 +28,7 @@ const Content = styled.main`
 
 const ImageContainer = styled.img`
   width:50%;
+  margin-left:10px;
 `;
 
 const SEE_PROFILE_QUERY = gql`
@@ -52,7 +57,7 @@ const EDIT_PROFILE_MUTATION = gql`
 
 const Profile = () => { 
     const {studentId} = useParams();
-    // console.log(location);
+    const darkMode = useReactiveVar(darkModeVar);
     const [IdCard,setIdCard] = useState("");
     const [Major,setMajor] = useState("");
     const [Name,setName] = useState("");
@@ -122,6 +127,14 @@ const Profile = () => {
             </Helmet>
             <Header/>
             <Content>
+                <FormControlLabel
+                    control={<Switch
+                                color="default"
+                                inputProps={{ 'aria-label': 'checkbox with default color' }}
+                                onChange={darkMode ? disableDarkMode : enableDarkMode}
+                            />}
+                    label="Dark Mode"
+                /> 
                 <Card>
                     <form onSubmit={handleSubmit(onSubmitValid)}>
                         <Input ref={register()} onChange={() => clearLoginError()} name="name" type="text" placeholder={Name} hasError={Boolean(errors?.name?.message)} />
@@ -140,7 +153,7 @@ const Profile = () => {
                     </form>
                     <ImageContainer src={IdCard}/>
                 </Card>
-                
+                <Footer/>
             </Content>
         </>
     );

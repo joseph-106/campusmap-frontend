@@ -1,18 +1,16 @@
-import { faMapMarkedAlt } from "@fortawesome/free-solid-svg-icons";
-import { Logo } from "Components/Logo";
-import { client, darkModeVar, isLoggedInVar } from "../apollo";
+import { useHistory } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { useForm } from "react-hook-form";
+import { useMutation,gql } from "@apollo/client";
 import routes from "routes";
+import styled from "styled-components";
+import { Logo } from "Components/Logo";
 import AuthLayout from "Components/Auth/AuthLayout";
 import Button from "Components/Auth/Button";
 import Input from "Components/Auth/Input";
 import FormBox from "Components/Auth/FormBox";
 import BottomBox from "Components/Auth/BottomBox";
-import styled from "styled-components";
 import { FatLink } from "Components/shared";
-import { Helmet } from "react-helmet-async";
-import { useForm } from "react-hook-form";
-import { useMutation,gql } from "@apollo/client";
-import { useHistory, useLocation } from "react-router-dom";
 
 
 const HeadContainer = styled.div`

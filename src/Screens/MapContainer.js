@@ -1,7 +1,6 @@
 /*global kakao*/ 
 import React, { useEffect, useState } from "react";
-import { gql, useQuery, useReactiveVar } from "@apollo/client";
-import styled from "styled-components";
+import { gql, useQuery } from "@apollo/client";
 
 const SEE_BUILDINGS_QUERY = gql`
     query seeBuildings{
@@ -14,10 +13,8 @@ const SEE_BUILDINGS_QUERY = gql`
     } 
 `;
 
-
 const MapContainer = () => {
     const [mapped, setMapped] = useState(null);
-    const [marker, setMarker] = useState(null);
     const {data} = useQuery(SEE_BUILDINGS_QUERY);
    
     useEffect(() => {
@@ -54,22 +51,6 @@ const MapContainer = () => {
                         createdInfo.open(createdMap,createdMarker);
                     });
                 });
-                
-
-                // let createdMarker = new kakao.maps.Marker({
-                //     position: createdMap.getCenter()
-                // });
-                // setMarker(createdMarker);
-                // createdMarker.setMap(createdMap);
-
-                // kakao.maps.event.addListener(createdMap,'click',function(mouseEvent){
-                //     let latlng = mouseEvent.latLng;
-                //     createdMarker.setPosition(latlng);
-
-                //     console.log(latlng.getLat());
-                //     console.log(latlng.getLng())
-                // });
-
             })
         }
     },[data]);

@@ -22,9 +22,14 @@ export const darkTheme = {
   accent: "#0095f6",  
   fontColor: "white",
   boxColor: "#2C2C2C",
-  bgColor: "black",
+  bgColor: "#A9A9A9",
+  borderColor: "black",
   darkGreyColor: "#A9A9A9",
-  darkBlueColor: "#00008b"
+  darkBlueColor: "#00008b",
+  whiteBox: ` border:${BOX_BORDER}; 
+                border-radius:${BORDER_RADIUS};
+                background-color:"#2C2C2C";
+            `
 };
 
 

@@ -1,17 +1,17 @@
-import { Logo } from "Components/Logo";
-import { darkModeVar, isLoggedInVar, logUserIn } from "../apollo";
+import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { useForm } from "react-hook-form";
+import { useMutation,gql } from "@apollo/client";
+import styled from "styled-components";
 import routes from "routes";
+import { logUserIn } from "../apollo";
+import { Logo } from "Components/Logo";
 import AuthLayout from "Components/Auth/AuthLayout";
 import Button from "Components/Auth/Button";
 import Input from "Components/Auth/Input";
 import FormBox from "Components/Auth/FormBox";
 import BottomBox from "Components/Auth/BottomBox";
-import { Helmet } from "react-helmet-async";
-import { useForm } from "react-hook-form";
 import FormError from "Components/Auth/FormError";
-import { useMutation,gql } from "@apollo/client";
-import styled from "styled-components";
-import { useLocation } from "react-router";
 
 const LOGIN_MUTATION = gql`
     mutation login($studentId:String!,$password:String!){
