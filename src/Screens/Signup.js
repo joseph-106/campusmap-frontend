@@ -11,6 +11,7 @@ import Input from "Components/Auth/Input";
 import FormBox from "Components/Auth/FormBox";
 import BottomBox from "Components/Auth/BottomBox";
 import { FatLink } from "Components/shared";
+import FormError from "Components/Auth/FormError";
 
 
 const HeadContainer = styled.div`
@@ -45,7 +46,7 @@ const CREATE_ACCOUNT_MUTATION = gql`
 `;
 
 const Signup = () => {
-    const {register,handleSubmit, errors, setError, getValues,formState} = useForm({
+    const {register,handleSubmit, errors, setError, getValues,formState,clearErrors} = useForm({
         mode:"onChange"
     });
     const history = useHistory();
@@ -77,6 +78,9 @@ const Signup = () => {
             }
         })
     };
+    const clearSignupError = () => {
+        clearErrors("result")
+    };
     return (
         <AuthLayout>
             <Helmet>
@@ -92,21 +96,27 @@ const Signup = () => {
                 <form onSubmit={handleSubmit(onSubmitValid)} encType={'multipart/form-data'}>
                     <Input ref={register({
                         required:"이름을 입력해주세요.",
-                    })} name="name" type="text" placeholder="이름"/>
+                    })} onChange={() => clearSignupError()} name="name" type="text" placeholder="이름"/>
+                    <FormError message={errors?.name?.message}/>
                     <Input ref={register({
                         required:"학번을 입력해주세요.",
-                    })} name="studentId" type="text" placeholder="학번"/>
+                    })} onChange={() => clearSignupError()} name="studentId" type="text" placeholder="학번"/>
+                    <FormError message={errors?.studentId?.message}/>
                     <Input ref={register({
                         required:"학과를 입력해주세요.",
-                    })} name="major" type="text" placeholder="학과"/>
+                    })} onChange={() => clearSignupError()} name="major" type="text" placeholder="학과"/>
+                    <FormError message={errors?.major?.message}/>
                     <Input ref={register({
                         required:"비밀번호를 입력해주세요.",
-                    })} name="password" type="password" placeholder="비밀번호"/>
+                    })} onChange={() => clearSignupError()} name="password" type="password" placeholder="비밀번호"/>
+                    <FormError message={errors?.password?.message}/>
                     <Input ref={register({
                         required:"학생증 사진을 넣어주세요",
-                    })}
+                    })} onChange={() => clearSignupError()}
                     name="idCard" type="file" placeholder="학생증"/>
+                    <FormError message={errors?.idCard?.message}/>
                     <Button type="submit" value={loading ? "Loading..." : "Sign Up"} disabled={!formState.isValid || loading}/>
+                    <FormError message={errors?.result?.message}/>
                 </form>
             </FormBox>
             <BottomBox 
