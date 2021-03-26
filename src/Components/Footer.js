@@ -38,10 +38,10 @@ export default () => (
   <Footer>
     <List>
       <ListItem>
-        <Link href="#">about us</Link>
+        <Link href="https://www.websolute.co.kr/">about us</Link>
       </ListItem>
       <ListItem>
-        <Link href="#">support</Link>
+        <Link href="https://www.hufspnp.com/">support</Link>
       </ListItem>
       <ListItem>
         <Link href="#">press</Link>
@@ -51,11 +51,8 @@ export default () => (
       </ListItem>
     </List>
     <List>
-      <ListItem>
-        <Content>Tel) 010-xxxx-xxxx</Content>
-      </ListItem>
       <ListItem> 
-        <Content style={{textTransform:"none"}}>E) pxxxxxxxxx@gmail.com</Content>
+        <Content style={{textTransform:"none"}}>E) psh090953@gmail.com</Content>
       </ListItem>
       <ListItem>
         <Copyright>CampusMap {new Date().getFullYear()} &copy;</Copyright>
