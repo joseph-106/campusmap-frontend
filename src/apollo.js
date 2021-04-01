@@ -39,7 +39,7 @@ const authLink = setContext((_,{headers}) => {
 
 export const client = new ApolloClient({
     link:authLink.concat(createUploadLink({
-        uri:"http://localhost:4000/graphql"
+        uri:process.env.NODE_ENV === "production" ? "https://campusmap-backend.herokuapp.com/graphql" : "http://localhost:4000/graphql"
     })),
     cache: new InMemoryCache(),
 });

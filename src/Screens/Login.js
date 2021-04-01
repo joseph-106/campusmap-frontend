@@ -89,8 +89,8 @@ const Login = () => {
                     <Input ref={register({
                         required:"비밀번호를 입력해주세요.",
                         minLength:{
-                            value: 4,
-                            message: "4자리 이상 입력하셔야 합니다."
+                            value: 6,
+                            message: "6자리 이상 입력하셔야 합니다."
                         },
                     })} onChange={() =>clearLoginError()} name="password" type="password" placeholder="비밀번호" hasError={Boolean(errors?.password?.message)}/>
                     <FormError message={errors?.password?.message}/>

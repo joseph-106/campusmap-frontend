@@ -100,6 +100,10 @@ const Signup = () => {
                     <FormError message={errors?.name?.message}/>
                     <Input ref={register({
                         required:"학번을 입력해주세요.",
+                        minLength:{
+                            value: 8,
+                            message: "8자리 이상 입력하셔야 합니다."
+                        }, 
                     })} onChange={() => clearSignupError()} name="studentId" type="text" placeholder="학번"/>
                     <FormError message={errors?.studentId?.message}/>
                     <Input ref={register({
@@ -108,6 +112,10 @@ const Signup = () => {
                     <FormError message={errors?.major?.message}/>
                     <Input ref={register({
                         required:"비밀번호를 입력해주세요.",
+                        minLength:{
+                            value: 6,
+                            message: "6자리 이상 입력하셔야 합니다."
+                        },
                     })} onChange={() => clearSignupError()} name="password" type="password" placeholder="비밀번호"/>
                     <FormError message={errors?.password?.message}/>
                     <Input ref={register({
