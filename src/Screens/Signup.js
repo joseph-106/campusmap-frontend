@@ -122,6 +122,9 @@ const Signup = () => {
                         required:"학생증 사진을 넣어주세요",
                     })} onChange={() => clearSignupError()}
                     name="idCard" type="file" placeholder="학생증"/>
+                    <label htmlFor="contained-button-file">
+                        학생증을 넣어주세요
+                    </label>
                     <FormError message={errors?.idCard?.message}/>
                     <Button type="submit" value={loading ? "Loading..." : "Sign Up"} disabled={!formState.isValid || loading}/>
                     <FormError message={errors?.result?.message}/>
