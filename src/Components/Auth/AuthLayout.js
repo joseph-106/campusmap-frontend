@@ -34,11 +34,11 @@ const AuthLayout = ({children}) => {
             <Wrapper>
                 {children}
             </Wrapper>
-            <Footer>
+            {/*<Footer>
                 <DarkModeButton onClick={darkMode ? disableDarkMode : enableDarkMode}>
                     <FontAwesomeIcon icon={darkMode ? faSun : faMoon}/>
                 </DarkModeButton>
-            </Footer>
+            </Footer>*/}
         </Container>
     );
 }
