@@ -3,11 +3,12 @@ import { BaseBox } from "Components/shared";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Container = styled(BaseBox)`
+const Container = styled.div`
     padding: 20px; 0px;
     text-align: center;
+    font-size: 16px;
     a{
-        font-weight:600;
+        font-weight:500;
         margin-left: 5px;
         color:${(props) => props.theme.accent};   
     }

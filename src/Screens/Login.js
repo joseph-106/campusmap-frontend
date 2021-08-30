@@ -6,6 +6,7 @@ import styled from "styled-components";
 import routes from "routes";
 import { logUserIn } from "../apollo";
 import { Logo } from "Components/Logo";
+import logo from '../logo.png'
 import AuthLayout from "Components/Auth/AuthLayout";
 import Button from "Components/Auth/Button";
 import Input from "Components/Auth/Input";
@@ -67,15 +68,24 @@ const Login = () => {
         clearErrors("result")
     };
 
+    const Subtitle = styled.div`
+    font-size: 18px;
+    font-weight: 500;
+    color: #606060;
+    text-align: center;
+    margin-top: 50px;
+    `;
+
     return (
         <AuthLayout>
             <Helmet>
                 <title>Login | CampusMap</title>
             </Helmet>
-            <FormBox>
+                <FormBox>
                 <div>
-                    <Logo/>
+                    <img src={logo} alt='logo'/>
                 </div>
+                <Subtitle>로그인</Subtitle>
                 <Notification>{location?.state?.message}</Notification>
                 <form onSubmit={handleSubmit(onSubmitValid)}>
                     <Input ref={register({
@@ -94,15 +104,15 @@ const Login = () => {
                         },
                     })} onChange={() =>clearLoginError()} name="password" type="password" placeholder="비밀번호" hasError={Boolean(errors?.password?.message)}/>
                     <FormError message={errors?.password?.message}/>
-                    <Button type="submit" value={loading ? "Loading..." : "Log In"} disabled={!formState.isValid || loading}/>
+                    <Button bottom="290px" type="submit" value={loading ? "로딩중..." : "로그인 →"} disabled={!formState.isValid || loading}/>
                     <FormError message={errors?.result?.message}/>
                 </form>
-            </FormBox>
             <BottomBox 
-                cta="Don't have an account?"
+                cta="계정이 없으신가요? "
                 link={routes.signUp}
-                linkText="Sign Up" 
+                linkText=" 회원가입" 
             />
+            </FormBox>
         </AuthLayout>
     )
 }

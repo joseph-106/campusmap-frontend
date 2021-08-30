@@ -5,6 +5,7 @@ import { useMutation,gql } from "@apollo/client";
 import routes from "routes";
 import styled from "styled-components";
 import { Logo } from "Components/Logo";
+import logo from '../logo.png'
 import AuthLayout from "Components/Auth/AuthLayout";
 import Button from "Components/Auth/Button";
 import Input from "Components/Auth/Input";
@@ -13,15 +14,27 @@ import BottomBox from "Components/Auth/BottomBox";
 import { FatLink } from "Components/shared";
 import FormError from "Components/Auth/FormError";
 
+import { Form } from 'react-bootstrap';
 
-const HeadContainer = styled.div`
+const Subtitle = styled.div`
     display:flex;
     flex-direction:center;
     align-items:center;
+
+    font-size: 18px;
+    font-weight: 500;
+    color: #606060;
+    text-align: center;
+    margin-top: 20px;
 `;
-const Subtitle = styled(FatLink)`
-    font-size: 16px;
-    text-align:center;
+
+const Text = styled.div`
+    font-size: 14px;
+    font-weight: 500;
+    color: #606060;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: ${props => props.bottom};
 `;
 
 const CREATE_ACCOUNT_MUTATION = gql`
@@ -81,18 +94,18 @@ const Signup = () => {
     const clearSignupError = () => {
         clearErrors("result")
     };
+
     return (
         <AuthLayout>
             <Helmet>
                 <title>Sign up | CampusMap</title>
             </Helmet>
             <FormBox>
-                <Logo/>
-                <HeadContainer>
-                    <Subtitle>
-                        회원가입 후 24시간 이내에 승인 처리 될 예정입니다. 
-                    </Subtitle>
-                </HeadContainer>
+                <img src={logo} alt='logo'/>
+                <Subtitle>
+                    회원가입
+                </Subtitle>
+                <Text>24시간 이내에 승인 처리 될 예정입니다.</Text> 
                 <form onSubmit={handleSubmit(onSubmitValid)} encType={'multipart/form-data'}>
                     <Input ref={register({
                         required:"이름을 입력해주세요.",
@@ -118,22 +131,22 @@ const Signup = () => {
                         },
                     })} onChange={() => clearSignupError()} name="password" type="password" placeholder="비밀번호"/>
                     <FormError message={errors?.password?.message}/>
-                    <Input ref={register({
-                        required:"학생증 사진을 넣어주세요",
-                    })} onChange={() => clearSignupError()}
-                    name="idCard" type="file" placeholder="학생증"/>
-                    <label htmlFor="contained-button-file">
-                        학생증을 넣어주세요
-                    </label>
+                    <Form.Group controlId="formFile" className="mb-3">
+                        <Text bottom='15px'>학생증 사진을 넣어주세요</Text>
+                        <Form.Control ref={register({
+                            required:"학생증 사진을 넣어주세요",
+                        })} onChange={() => clearSignupError()}
+                        name="idCard" type="file"/>
+                    </Form.Group>
                     <FormError message={errors?.idCard?.message}/>
-                    <Button type="submit" value={loading ? "Loading..." : "Sign Up"} disabled={!formState.isValid || loading}/>
+                    <Button type="submit" value={loading ? "로딩중..." : "회원가입 →"} disabled={!formState.isValid || loading}/>
                     <FormError message={errors?.result?.message}/>
                 </form>
             </FormBox>
             <BottomBox 
-                cta="Have an account?"
+                cta="이미 회원이신가요? "
                 link={routes.home}
-                linkText="Log In" 
+                linkText=" 로그인" 
             />
         </AuthLayout>
     )
