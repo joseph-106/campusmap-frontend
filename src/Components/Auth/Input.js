@@ -3,6 +3,9 @@ import styled from "styled-components";
 const Input = styled.input`
     height: 60px;
     width: 500px;
+    @media only screen and (max-width: 500px) {
+        width: 100%;
+      }
     border-radius: 10px;
     padding: 0 20px;
     background-color:#fafafa;

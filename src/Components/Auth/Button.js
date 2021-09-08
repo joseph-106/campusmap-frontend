@@ -5,6 +5,9 @@ const Button = styled.input`
     border-radius: 30px;
     margin-top:30px;
     margin-left:380px;
+    @media only screen and (max-width: 500px) {
+        margin-left:200px;
+    }
     margin-bottom: ${props => props.bottom};
     background-color:${(props) => props.theme.accent};
     color: white;
