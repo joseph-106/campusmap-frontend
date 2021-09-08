@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
-    padding: 20px; 0px;
     text-align: center;
     font-size: 16px;
     a{

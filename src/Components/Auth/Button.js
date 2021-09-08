@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Button = styled.input`
     border:none;
     border-radius: 30px;
-    margin-top:30px;
+    margin-top:15px;
     margin-left:380px;
     @media only screen and (max-width: 500px) {
         margin-left:200px;
