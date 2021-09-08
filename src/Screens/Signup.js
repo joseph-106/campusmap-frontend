@@ -5,7 +5,9 @@ import { useMutation,gql } from "@apollo/client";
 import routes from "routes";
 import styled from "styled-components";
 import { Logo } from "Components/Logo";
-import logo from '../logo.png'
+import logo1 from '../logo1.png'
+import logo2 from '../logo2.png'
+import { useMediaQuery } from "react-responsive"
 import AuthLayout from "Components/Auth/AuthLayout";
 import Button from "Components/Auth/Button";
 import Input from "Components/Auth/Input";
@@ -95,13 +97,21 @@ const Signup = () => {
         clearErrors("result")
     };
 
+    const isPc = useMediaQuery({
+        query : "(min-width:768px)"
+    });
+    const isMobile = useMediaQuery({
+        query : "(max-width:767px)"
+    });
+
     return (
         <AuthLayout>
             <Helmet>
                 <title>Sign up | CampusMap</title>
             </Helmet>
             <FormBox>
-                <img src={logo} alt='logo'/>
+                {isPc && <img src={logo1} alt='logo'/>}
+                {isMobile && <img src={logo2} alt='logo'/>}
                 <Subtitle>
                     회원가입
                 </Subtitle>

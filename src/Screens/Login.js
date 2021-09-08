@@ -6,7 +6,9 @@ import styled from "styled-components";
 import routes from "routes";
 import { logUserIn } from "../apollo";
 import { Logo } from "Components/Logo";
-import logo from '../logo.png'
+import logo1 from '../logo1.png'
+import logo2 from '../logo2.png'
+import { useMediaQuery } from "react-responsive"
 import AuthLayout from "Components/Auth/AuthLayout";
 import Button from "Components/Auth/Button";
 import Input from "Components/Auth/Input";
@@ -76,6 +78,13 @@ const Login = () => {
     margin-top: 50px;
     `;
 
+    const isPc = useMediaQuery({
+        query : "(min-width:768px)"
+    });
+    const isMobile = useMediaQuery({
+        query : "(max-width:767px)"
+    });
+
     return (
         <AuthLayout>
             <Helmet>
@@ -83,7 +92,8 @@ const Login = () => {
             </Helmet>
                 <FormBox>
                 <div>
-                    <img src={logo} alt='logo'/>
+                    {isPc && <img src={logo1} alt='logo'/>}
+                    {isMobile && <img src={logo2} alt='logo'/>}
                 </div>
                 <Subtitle>로그인</Subtitle>
                 <Notification>{location?.state?.message}</Notification>
