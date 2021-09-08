@@ -11,6 +11,7 @@ const Container = styled.div`
         margin-left: 5px;
         color:${(props) => props.theme.accent};   
     }
+    padding-bottom: 25px;
 `;
 
 const BottomBox = ({cta,link,linkText}) => {

@@ -114,7 +114,7 @@ const Login = () => {
                         },
                     })} onChange={() =>clearLoginError()} name="password" type="password" placeholder="비밀번호" hasError={Boolean(errors?.password?.message)}/>
                     <FormError message={errors?.password?.message}/>
-                    <Button bottom="230px" type="submit" value={loading ? "로딩중..." : "로그인 →"} disabled={!formState.isValid || loading}/>
+                    <Button bottom="220px" type="submit" value={loading ? "로딩중..." : "로그인 →"} disabled={!formState.isValid || loading}/>
                     <FormError message={errors?.result?.message}/>
                 </form>
             <BottomBox 

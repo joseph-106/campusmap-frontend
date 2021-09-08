@@ -5,6 +5,7 @@ const Input = styled.input`
     width: 500px;
     @media only screen and (max-width: 500px) {
         width: 100%;
+        height: 50px;
       }
     border-radius: 10px;
     padding: 0 20px;
