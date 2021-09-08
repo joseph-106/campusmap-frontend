@@ -10,6 +10,7 @@ height: 100vh;
 justify-content:center;
 align-items:center;
 flex-direction:column;
+padding-top: 55px;
 `;
 
 const Wrapper = styled.div`
