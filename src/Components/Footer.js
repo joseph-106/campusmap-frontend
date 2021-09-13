@@ -6,57 +6,59 @@ const Footer = styled.footer`
   justify-content: space-between;
   align-items: center;
   text-transform: uppercase;
-  font-weight: 600;
-  font-size: 12px;
-  margin:50px 0px;
+
+  font-style: normal;
+  font-weight: bold;
+  
+  position: absolute;
+  width: 100%;
+  height: 110px;
+  left: 0px;
+  background: #878787;
 `;
 
 const List = styled.ul`
   display: flex;
 `;
 
-const ListItem = styled.li`
-  &:not(:last-child) {
-    margin-right: 16px;
-  }
-`;
-
 const Link = styled.a`
-  color: ${props => props.theme.darkBlueColor};
+  color: #FFFFFF;
+  font-size: 18px;
+  margin-right: 15px;
 `;
 
 const Copyright = styled.span`
-  color: ${props => props.theme.darkGreyColor};
+  color: #FFFFFF;
+  font-size: 15px;
+  margin-right: 15px;
 `;
 
 const Content = styled.span`
-  color: ${props => props.theme.darkGreyColor};
+  color: #FFFFFF;
+  font-size: 15px;
+  margin-top: 10px;
+`;
+
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px; 
 `;
 
 
 export default () => (
   <Footer>
-    <List>
-      <ListItem>
-        <Link href="https://www.websolute.co.kr/">about us</Link>
-      </ListItem>
-      <ListItem>
+      <Div>
+        <List>
+        <Link href="https://www.websolute.co.kr/">about</Link>
         <Link href="https://www.hufspnp.com/">support</Link>
-      </ListItem>
-      <ListItem>
         <Link href="#">press</Link>
-      </ListItem>
-      <ListItem>
         <Link href="#">api</Link>
-      </ListItem>
-    </List>
+        </List>
+        <Content style={{textTransform:"none"}}>✉ psh090953@gmail.com</Content>
+      </Div>
     <List>
-      <ListItem> 
-        <Content style={{textTransform:"none"}}>E) psh090953@gmail.com</Content>
-      </ListItem>
-      <ListItem>
-        <Copyright>CampusMap {new Date().getFullYear()} &copy;</Copyright>
-      </ListItem>
+        <Copyright>Campus Map {new Date().getFullYear()} &copy;</Copyright>
     </List>
   </Footer>
 );
