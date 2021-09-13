@@ -58,8 +58,8 @@ const MapContainer = () => {
         <div id='myMap' 
             style={{ 
                 width:'100%',
-                height:'90vh', 
-                maxWidth:"100vh", 
+                height:'100vh', 
+                maxWidth:"200vh", 
                 display:"flex", 
                 justifyContent:"center", 
                 alignItems:"center",
