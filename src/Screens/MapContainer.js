@@ -55,7 +55,19 @@ const MapContainer = () => {
         }
     },[data]);
     return (
-         <div id='myMap' style={{ width:'100%', height:'100vh', maxWidth:"200vh", display:"flex", justifyContent:"center", alignItems:"center"}}></div>    
+        <div id='myMap' 
+            style={{ 
+                width:'100%',
+                height:'90vh', 
+                maxWidth:"100vh", 
+                display:"flex", 
+                justifyContent:"center", 
+                alignItems:"center",
+                marginTop:"20px",
+                marginBottom:"20px",
+                borderRadius:"40px"
+            }}>
+        </div>    
     );
 }
 

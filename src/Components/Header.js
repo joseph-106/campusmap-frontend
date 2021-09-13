@@ -7,11 +7,15 @@ import routes from "routes";
 import useUser from "./Hooks/useUser";
 import { faMapMarkedAlt, faSignOutAlt, faUser, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo2 from '../logo2.png'
+import logo3 from '../logo3.png'
+import { useMediaQuery } from "react-responsive"
 
 const SHeader = styled.header`
   width: 100%;
   background-color: ${props => props.theme.bgColor};
   border-bottom: 1px solid ${props => props.theme.borderColor};
+  border-radius: 0px 0px 20px 20px;
   padding: 18px 0px;
   display: flex;
   justify-content: center;
@@ -53,16 +57,24 @@ const Font = styled.span`
   display:flex;
 `;
 
-
 const Header = () => {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
   const {data} = useUser();
+
+  const isPc = useMediaQuery({
+    query : "(min-width:768px)"
+  });
+  const isMobile = useMediaQuery({
+    query : "(max-width:767px)"
+  });
+
   return (
     <SHeader>
       <Wrapper>
         <Column>
           <Link to={'/'} >
-            <FontAwesomeIcon icon={faMapMarkedAlt} size="3x" color="black"/>
+            {isPc && <img src={logo2} alt='logo'/>}
+            {isMobile && <img src={logo3} alt='logo'/>}
           </Link>
         </Column>
         <Column>
