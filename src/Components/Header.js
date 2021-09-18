@@ -72,9 +72,11 @@ const ListContainer = styled.div`
   display:none;
   ${DropDown}:active & {
     display: block;
+    z-index:1;
   }
   ${DropDown}:focus & {
     display: block;
+    z-index:1;
   }
 `;
 

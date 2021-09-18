@@ -66,7 +66,7 @@ const MapContainer = () => {
                 marginTop:"20px",
                 marginBottom:"20px",
                 borderRadius:"40px",
-                zIndex:"-1"
+                zIndex:"0"
             }}>
         </div>    
     );
