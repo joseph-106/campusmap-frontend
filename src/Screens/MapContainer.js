@@ -65,7 +65,8 @@ const MapContainer = () => {
                 alignItems:"center",
                 marginTop:"20px",
                 marginBottom:"20px",
-                borderRadius:"40px"
+                borderRadius:"40px",
+                zIndex:"-1"
             }}>
         </div>    
     );

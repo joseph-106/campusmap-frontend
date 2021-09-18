@@ -31,11 +31,14 @@ const Wrapper = styled.div`
 `;
 
 const Column = styled.div`
-  
 `;
 
-const Icon = styled.span`
-  margin-left:15px;
+const DropDown = styled.button`
+  border: none;
+  outline:none;
+  background-color: ${props => props.theme.bgColor};
+  position: relative;
+  width: 80px;
 `;
 
 const Button = styled.span`
@@ -46,15 +49,33 @@ const Button = styled.span`
   font-weight:600;
 `;
 
-const IconsContainer = styled.div`
-  display:flex;
+const Li = styled.li`
+  list-style: none;
 `;
 
-const Font = styled.span`
-  font-size:10px;
-  font-weight: 1000;
-  padding: 2px 0px;
-  display:flex;
+const Ul = styled.ul`
+  list-style: none;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  color: #666666;
+  line-height: 22px;
+`;
+
+const ListContainer = styled.div`
+  border: 1px solid ${props => props.theme.borderColor};
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  padding: 3px;
+  margin-top: 7px;
+  position: absolute;
+  display:none;
+  ${DropDown}:active & {
+    display: block;
+  }
+  ${DropDown}:focus & {
+    display: block;
+  }
 `;
 
 const Header = () => {
@@ -79,25 +100,18 @@ const Header = () => {
         </Column>
         <Column>
           {isLoggedIn ? (
-            <IconsContainer>
-               {data?.me?.isManaged ? (
-                 <Icon>
-                   <Link to={`/manager`} >
-                    <FontAwesomeIcon icon={faUserCog} size="2x" color="black"/>
-                    <Font>Manager</Font>
-                   </Link> 
-                 </Icon>
-               ) : null} 
-               <Icon>
-                 <Link to={`/user/${data?.me?.studentId}`}>
-                    <FontAwesomeIcon icon={faUser} style={{justifyContent:"center", alignItems:"center"}} size="2x" color="black"/>
-                    <Font>{data?.me?.name}</Font>
-                  </Link>
-                </Icon>
-                <Icon onClick={logUserOut}>
-                    <FontAwesomeIcon icon={faSignOutAlt} size="2x" color="black"/>
-                </Icon> 
-            </IconsContainer>
+                <Li>
+                  <DropDown>
+                      <FontAwesomeIcon icon={faUser} style={{justifyContent:"center", alignItems:"center"}} size="2x" color="black"/>
+                  <ListContainer>
+                  <Ul>
+                    <Li><Link to={`/user/${data?.me?.studentId}`}>프로필</Link></Li>
+                    {data?.me?.isManaged ? (<Li><Link to={`/manager`} >매니저</Link></Li>) : null} 
+                    <Li onClick={logUserOut}><Link>로그아웃</Link></Li>
+                  </Ul>
+                  </ListContainer>
+                  </DropDown>
+                </Li>
           ) : (
             <Link href={routes.home}>
               <Button>Login</Button>
