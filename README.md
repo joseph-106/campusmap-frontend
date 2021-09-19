@@ -3,7 +3,7 @@
 한국외대 위치정보 모아보기  
 https://campus-map.netlify.app/
 
-# Step
+## Step
 - [x] Manager 인증 API
 - [x] Verified 인증 API
 - [x] seeUsers API

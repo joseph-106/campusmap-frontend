@@ -42,7 +42,6 @@ const DropDown = styled.button`
 `;
 
 const Button = styled.span`
-  background-color: ${props => props.theme.bgColor};
   border-radius:4px;
   padding: 4px 15px;
   color:white;
@@ -64,6 +63,7 @@ const Ul = styled.ul`
 
 const ListContainer = styled.div`
   border: 1px solid ${props => props.theme.borderColor};
+  background-color: ${props => props.theme.bgColor};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   padding: 3px;
