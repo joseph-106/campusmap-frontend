@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import { Helmet } from "react-helmet-async";
 import {gql, useMutation, useQuery} from '@apollo/client';
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from 'Components/Header';
 import Footer from "Components/Footer";
@@ -74,27 +75,94 @@ const MANAGED_USER_MUTATION = gql`
     }
 `;
 
+const REMOVE_USER_MUTATION = gql`
+    mutation removeUser($id:Int!){
+        removeUser(id:$id){
+            ok
+            error
+        }
+    }
+`;
+
 const Manager = () => {
     const classes = useStyles();
     const {data} = useQuery(SEE_USERS_QUERY);
     const [verifiedUser] = useMutation(VERIFIED_USER_MUTATION);
     const [managedUser] = useMutation(MANAGED_USER_MUTATION);
+    const [removeUser] = useMutation(REMOVE_USER_MUTATION);
     const onClickHandlerV = (e) => {
         const id = Number(e.target.value);
+        const verifiedUserUpdate = (cache,result) => {
+            const {
+                data:{
+                    verifiedUser:{ok}
+                }
+            } = result;
+            if(!ok){
+                return;
+            }
+            cache.modify({
+                id:`User:${id}`,
+                fields:{
+                    verified(prev){
+                        return !prev;
+                    }
+                }
+            });
+        }
         verifiedUser({
             variables:{
                 id
-            }
+            },
+            update:verifiedUserUpdate
         });
         
     }
     const onClickHandlerM = (e) => {
         const id = Number(e.target.value);
+        const managedUserUpdate = (cache,result) => {
+            const {
+                data:{
+                    managedUser:{ok}
+                }
+            } = result;
+            if(!ok){
+                return;
+            }
+            cache.modify({
+                id:`User:${id}`,
+                fields:{
+                    isManaged(prev){
+                        return !prev;
+                    }
+                }
+            });
+        }
         managedUser({
             variables:{
                 id
-            }
+            },
+            update:managedUserUpdate
         });   
+    }
+    const onDelteClick = (e) => {
+        const id = Number(e.target.value);
+        const removeUserUpdate = (cache,result) => {
+            const {
+                data:{
+                    removeUser:{ok}
+                }
+            } = result;
+            if(ok){
+                cache.evict({id:`User:${id}`})
+            }
+        }
+        removeUser({
+            variables:{
+                id
+            },
+            update:removeUserUpdate
+        })
     }
     return (
         <>
@@ -108,7 +176,8 @@ const Manager = () => {
                         <Table className={classes.table} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>StudentId</TableCell>
+                                    <TableCell>deleteUser</TableCell>
+                                    <TableCell align="right">StudentId</TableCell>
                                     <TableCell align="right">Name</TableCell>
                                     <TableCell align="right">Major</TableCell>
                                     <TableCell align="right">Verified</TableCell>
@@ -120,6 +189,9 @@ const Manager = () => {
                                 {data?.seeUsers?.map((user) => (
                                     <TableRow key={user.studentId}>
                                         <TableCell component="th" scope="row">
+                                            <button value={user.id} onClick={onDelteClick} >❌</button>
+                                        </TableCell>
+                                        <TableCell>
                                             {user.studentId}
                                         </TableCell>
                                         <TableCell align="right">{user.name}</TableCell>
