@@ -1,7 +1,8 @@
 const routes = {
     home:"/",
     signUp: "/signup",
-    Manager: "/manager"
+    Manager: "/manager",
+    MapEditor: "/editor"
 };
 
 export default routes;
