@@ -11,6 +11,7 @@ import Home from "Screens/Home";
 import Profile from "Screens/Profile";
 import Building from "Screens/Building";
 import Manager from "Screens/Manager";
+import MapEditor from "Screens/MapEditor";
 
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
@@ -36,6 +37,9 @@ function App() {
             ):null}
             <Route path={routes.Manager} >
               <Manager/>
+            </Route>
+            <Route path={routes.MapEditor} >
+              <MapEditor/>
             </Route>
             <Route path={`/user/:studentId`}>
               <Profile/>

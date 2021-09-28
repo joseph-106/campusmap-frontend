@@ -15,7 +15,6 @@ import FormBox from "Components/Auth/FormBox";
 import BottomBox from "Components/Auth/BottomBox";
 import { FatLink } from "Components/shared";
 import FormError from "Components/Auth/FormError";
-
 import { Form } from 'react-bootstrap';
 
 const Subtitle = styled.div`
