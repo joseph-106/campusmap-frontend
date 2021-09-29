@@ -186,7 +186,12 @@ const MapEditor = () => {
                         </Div>
                         <Div>
                             <Form.Group controlId="formFile" className="mx-3">
-                                <Form.Control type="file" />
+                                <Form.Control ref={register({
+                                    required:"학생증 사진을 넣어주세요",
+                                    })}
+                                    name="Image"
+                                    type="file"
+                                />
                             </Form.Group>
                             <Button type="submit"/>
                         </Div>
