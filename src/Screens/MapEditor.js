@@ -1,9 +1,12 @@
 import React,{useState} from 'react';
+import {gql, useMutation} from "@apollo/client";
+import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import styled from "styled-components";
 import Header from 'Components/Header';
 import Footer from "Components/Footer";
 import { Form } from 'react-bootstrap';
+import { CREATE_BUILDING_MUTATTION, CREATE_FLOOR_MUTATTION } from 'Components/Mutation/MapEditorMutation';
 
 const Card = styled.div`
     ${props => props.theme.whiteBox}
@@ -67,6 +70,59 @@ const Button = styled.input`
 `;
 
 const MapEditor = () => {
+    const {register,handleSubmit,formState,getValues} = useForm({
+        mode:"onChange"
+    });
+    const CreateBuildingCompleted = (data) => {
+        const {
+            createBuilding:{
+                ok,
+                error
+            }
+        } = data;
+        if(!ok){
+            return;
+        }
+    };
+    const [createBuilding, {loading:createBuildingLoading}] = useMutation(CREATE_BUILDING_MUTATTION,{
+        onCompleted:CreateBuildingCompleted
+    });
+    const onSubmitCreateBuildingValid = (data) => {
+        if(createBuildingLoading){
+            return;
+        }
+        createBuilding({
+            variables:{
+                ...data
+            }
+        });
+    }
+
+    const CreateFloorCompleted = (data) => {
+        const {
+            createFloor:{
+                ok,
+                error
+            }
+        } = data;
+        if(!ok){
+            return;
+        }
+    };
+    const [createFloor,{loading:createFloorLoading}] = useMutation(CREATE_FLOOR_MUTATTION,{
+        onCompleted:CreateFloorCompleted
+    });
+    const onSubmitCreateFloorValid = (data) => {
+        if(createFloorLoading){
+            return;
+        }
+        createFloor({
+            variables:{
+                ...data
+            }
+        });
+    }
+
     return (
         <>
             <Helmet>
@@ -75,23 +131,58 @@ const MapEditor = () => {
             <Header/>
             <Content>
                 <Card>
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmitCreateBuildingValid)}>
                     <Contain>
                         <Subtitle>건물 생성</Subtitle>
                         <Div>
-                            <Input placeholder="이름"></Input>
-                            <Input placeholder="경도"></Input>
-                            <Input placeholder="위도"></Input>
+                            <Input
+                                ref={register({
+                                    required:"name is required."
+                                })}
+                                name="name"
+                                type="text" 
+                                placeholder="이름"
+                            />
+                            <Input
+                                ref={register({
+                                    required:"latitude is required."
+                                })}
+                                name="lat"
+                                type="text" 
+                                placeholder="경도"
+                            />
+                            <Input
+                                ref={register({
+                                    required:"longitude is required."
+                                })}
+                                name="lng"
+                                type="text" 
+                                placeholder="위도"
+                            />
                             <Button type="submit"/>
                         </Div>
                     </Contain>
                     </form>
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmitCreateFloorValid)}>
                     <Contain>
                         <Subtitle>층 생성</Subtitle>
                         <Div>
-                            <Input placeholder="이름"></Input>
-                            <Input placeholder="빌딩이름"></Input>
+                            <Input
+                                ref={register({
+                                    required:"name is required."
+                                })}
+                                name="name"
+                                type="text" 
+                                placeholder="이름"
+                            />
+                            <Input
+                                ref={register({
+                                    required:"buildingName is required."
+                                })}
+                                name="buildingName"
+                                type="text" 
+                                placeholder="이름"
+                            />
                         </Div>
                         <Div>
                             <Form.Group controlId="formFile" className="mx-3">
